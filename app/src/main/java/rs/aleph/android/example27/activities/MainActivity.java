@@ -1,5 +1,6 @@
 package rs.aleph.android.example27.activities;
 
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -15,11 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.squareup.picasso.Picasso;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -190,9 +194,31 @@ public class MainActivity extends AppCompatActivity implements OnProductSelected
             case R.id.action_add:
                 addItem();
                 break;
+            case R.id.action_image:
+                showRandomImage();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showRandomImage() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.band_layout);
+
+        ImageView image = (ImageView) dialog.findViewById(R.id.band_image);
+
+        Picasso.with(this).load("https://source.unsplash.com/random").into(image);
+
+        Button close = (Button) dialog.findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     // refresh() prikazuje novi sadrzaj.Povucemo nov sadrzaj iz baze i popunimo listu
