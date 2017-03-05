@@ -369,7 +369,7 @@ public class MainActivity extends AppCompatActivity implements OnProductSelected
      * Taj deo treba da implementiramo dodavajuci Callback<List<Event>> unutar enqueue metode
      *
      * Servis koji pozivamo izgleda:
-     * http://api.bandsintown.com/artists/Metallica/events?app_id=test
+     * http://rest.bandsintown.com/artists/Metallica/events?app_id=test
      *
      * gde je :
      *
